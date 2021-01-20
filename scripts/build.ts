@@ -18,7 +18,7 @@ const createBuild = () => {
       format,
     })
       .then(() => {
-        console.info(`${format}.js was built`);
+        console.info(`— ${format}.js was built`);
       })
       .catch((e) => {
         console.info(`🚨 ${format}.js build error:`);
