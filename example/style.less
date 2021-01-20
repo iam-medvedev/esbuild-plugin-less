@@ -1,7 +1,11 @@
 body {
-  background: #eee;
+  background: @primaryColor; // This var is defined in build.ts
 
   & article {
     width: 100px;
+
+    &:first-child {
+      width: 200px;
+    }
   }
 }

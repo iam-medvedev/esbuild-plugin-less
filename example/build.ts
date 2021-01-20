@@ -6,7 +6,13 @@ build({
   entryPoints: [path.resolve(__dirname, 'index.ts')],
   bundle: true,
   outdir: path.resolve(__dirname, 'output'),
-  plugins: [lessLoader()],
+  plugins: [
+    lessLoader({
+      globalVars: {
+        primaryColor: '#ff0000',
+      },
+    }),
+  ],
   loader: {
     '.ts': 'ts',
   },
