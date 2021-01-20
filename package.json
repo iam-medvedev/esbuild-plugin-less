@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-less",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "esbuild plugin for less files",
   "repository": "https://github.com/iam-medvedev/esbuild-plugin-less.git",
   "homepage": "https://github.com/iam-medvedev/esbuild-plugin-less#readme",
@@ -9,6 +9,10 @@
   "license": "UNLICENSED",
   "main": "build/cjs.js",
   "types": "build/index.d.ts",
+  "files": [
+    "build/*",
+    "package.json"
+  ],
   "scripts": {
     "build": "NODE_ENV=production ts-node ./scripts/build.ts",
     "build:example": "ts-node ./example/build.ts",
