@@ -1,12 +1,12 @@
 {
   "name": "esbuild-plugin-less",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "esbuild plugin for less files",
   "repository": "https://github.com/iam-medvedev/esbuild-plugin-less.git",
   "homepage": "https://github.com/iam-medvedev/esbuild-plugin-less#readme",
   "bugs": "https://github.com/iam-medvedev/esbuild-plugin-less/issues",
   "author": "Ilya Medvedev <ilya@medvedev.im>",
-  "license": "UNLICENSED",
+  "license": "WTFPL",
   "main": "build/cjs.js",
   "types": "build/index.d.ts",
   "files": [
