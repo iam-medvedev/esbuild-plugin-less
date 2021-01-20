@@ -2,6 +2,7 @@
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-f8bc45.svg)](https://github.com/prettier/prettier)
 [![npm version](https://badge.fury.io/js/esbuild-plugin-less.svg)](https://www.npmjs.com/package/esbuild-plugin-less)
+[![David](https://img.shields.io/david/dev/iam-medvedev/esbuild-plugin-less)](https://david-dm.org/iam-medvedev/esbuild-plugin-less)
 
 # esbuild-plugin-less
 
