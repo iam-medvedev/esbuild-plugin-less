@@ -4,6 +4,7 @@
 [![npm version](https://badge.fury.io/js/esbuild-plugin-less.svg)](https://www.npmjs.com/package/esbuild-plugin-less)
 [![David](https://img.shields.io/david/dev/iam-medvedev/esbuild-plugin-less)](https://david-dm.org/iam-medvedev/esbuild-plugin-less)
 [![Codecov](https://img.shields.io/codecov/c/github/iam-medvedev/esbuild-plugin-less)](https://codecov.io/gh/iam-medvedev/esbuild-plugin-less)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_shield)
 
 # esbuild-plugin-less
 
@@ -38,9 +39,7 @@ build({
 
 `lessLoader` accepts all valid options from less.js. You can find a complete list of options [here](http://lesscss.org/usage/#less-options).
 
-
-
-# License
+## License
 
 `esbuild-plugin-less` is [WTFPL licensed](./LICENSE).
 
