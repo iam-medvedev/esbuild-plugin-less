@@ -37,3 +37,11 @@ build({
 ## Options
 
 `lessLoader` accepts all valid options from less.js. You can find a complete list of options [here](http://lesscss.org/usage/#less-options).
+
+
+
+# License
+
+`esbuild-plugin-less` is [WTFPL licensed](./LICENSE).
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_large)
