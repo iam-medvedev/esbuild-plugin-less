@@ -1,37 +1,57 @@
-<p>
-  <a href="http://www.wtfpl.net/about/"><img src="https://img.shields.io/badge/License-WTFPL-brightgreen.svg" alt="License: WTFPL"></a>
-  <a href="http://www.typescriptlang.org/"><img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg" alt="TypeScript"></a>
-  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-f8bc45.svg" alt="code style: prettier"></a>
-  <a href="https://www.npmjs.com/package/esbuild-plugin-less"><img src="https://badge.fury.io/js/esbuild-plugin-less.svg" alt="npm version"></a>
-  <a href="https://david-dm.org/iam-medvedev/esbuild-plugin-less"><img src="https://img.shields.io/david/dev/iam-medvedev/esbuild-plugin-less" alt="David"></a>
-  <a href="https://codecov.io/gh/iam-medvedev/esbuild-plugin-less"><img src="https://img.shields.io/codecov/c/github/iam-medvedev/esbuild-plugin-less" alt="Codecov"></a>
-  <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=shield" alt="FOSSA Status"></a>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="IJ7BKgn-upq6463qcY8UMpHfx3TfDC3EUQHGreFCXlo" />
+  <style>
+    body {
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+    }
+  </style>
 
-<h1 id="esbuild-plugin-less">esbuild-plugin-less</h1>
-<p><a href="https://github.com/evanw/esbuild">esbuild</a> plugin for less files</p>
+  <title>esbuild-plugin-less</title>
+</head>
+<body>
+  <p>
+    <a href="http://www.wtfpl.net/about/"><img src="https://img.shields.io/badge/License-WTFPL-brightgreen.svg" alt="License: WTFPL"></a>
+    <a href="http://www.typescriptlang.org/"><img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg" alt="TypeScript"></a>
+    <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-f8bc45.svg" alt="code style: prettier"></a>
+    <a href="https://www.npmjs.com/package/esbuild-plugin-less"><img src="https://badge.fury.io/js/esbuild-plugin-less.svg" alt="npm version"></a>
+    <a href="https://david-dm.org/iam-medvedev/esbuild-plugin-less"><img src="https://img.shields.io/david/dev/iam-medvedev/esbuild-plugin-less" alt="David"></a>
+    <a href="https://codecov.io/gh/iam-medvedev/esbuild-plugin-less"><img src="https://img.shields.io/codecov/c/github/iam-medvedev/esbuild-plugin-less" alt="Codecov"></a>
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=shield" alt="FOSSA Status"></a>
+  </p>
+  
+  <h1 id="esbuild-plugin-less">esbuild-plugin-less</h1>
+  <p><a href="https://github.com/evanw/esbuild">esbuild</a> plugin for less files</p>
+  
+  <h2 id="install">Install</h2>
+  <pre><code>yarn <span class="hljs-keyword">add</span><span class="bash"> esbuild-plugin-less -D</span>
+  </code></pre>
+  <h2 id="usage">Usage</h2>
+  <p>You can see the example <a href="./example">here</a>.</p>
+  <pre><code class="lang-ts"><span class="hljs-keyword">import</span> { build } from <span class="hljs-string">'esbuild'</span>;
+  <span class="hljs-keyword">import</span> { lessLoader } from <span class="hljs-string">'esbuild-plugin-less'</span>;
+  
+  build({
+    entryPoints: [path.resolve(__dirname, <span class="hljs-string">'index.ts'</span>)],
+    bundle: true,
+    outdir: path.resolve(__dirname, <span class="hljs-string">'output'</span>),
+    plugins: [lessLoader()],
+    loader: {
+      <span class="hljs-string">'.ts'</span>: <span class="hljs-string">'ts'</span>,
+    },
+  });
+  </code></pre>
+  
+  <h2 id="options">Options</h2>
+  <p><code>lessLoader</code> accepts all valid options from less.js. You can find a complete list of options <a
+      href="http://lesscss.org/usage/#less-options">here</a>.</p>
+  
+  <h2 id="license">License</h2>
+  <p><code>esbuild-plugin-less</code> is <a href="./LICENSE">WTFPL licensed</a>.</p>
+  <p><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_large"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=large" alt="FOSSA Status"></a></p>
 
-<h2 id="install">Install</h2>
-<pre><code>yarn <span class="hljs-keyword">add</span><span class="bash"> esbuild-plugin-less -D</span>
-</code></pre><h2 id="usage">Usage</h2>
-<p>You can see the example <a href="./example">here</a>.</p>
-<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { build } from <span class="hljs-string">'esbuild'</span>;
-<span class="hljs-keyword">import</span> { lessLoader } from <span class="hljs-string">'esbuild-plugin-less'</span>;
-
-build({
-  entryPoints: [path.resolve(__dirname, <span class="hljs-string">'index.ts'</span>)],
-  bundle: true,
-  outdir: path.resolve(__dirname, <span class="hljs-string">'output'</span>),
-  plugins: [lessLoader()],
-  loader: {
-    <span class="hljs-string">'.ts'</span>: <span class="hljs-string">'ts'</span>,
-  },
-});
-</code></pre>
-
-<h2 id="options">Options</h2>
-<p><code>lessLoader</code> accepts all valid options from less.js. You can find a complete list of options <a href="http://lesscss.org/usage/#less-options">here</a>.</p>
-
-<h2 id="license">License</h2>
-<p><code>esbuild-plugin-less</code> is <a href="./LICENSE">WTFPL licensed</a>.</p>
-<p><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_large"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=large" alt="FOSSA Status"></a></p>
+</body>
+</html>
