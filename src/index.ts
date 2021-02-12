@@ -21,7 +21,11 @@ export function lessLoader(options: Less.Options = {}): Plugin {
       // Compilation
       build.onLoad({ filter: /.*/, namespace }, async (args) => {
         const content = await fs.readFile(args.path, 'utf-8');
-        const result = await less.render(content, options);
+        const dir = path.dirname(args.path);
+        const result = await less.render(content, {
+          ...options,
+          paths: [...(options.paths || []), dir],
+        });
 
         return {
           contents: result.css,
