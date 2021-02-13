@@ -22,9 +22,11 @@ export function lessLoader(options: Less.Options = {}): Plugin {
       build.onLoad({ filter: /.*/, namespace }, async (args) => {
         const content = await fs.readFile(args.path, 'utf-8');
         const dir = path.dirname(args.path);
+        const filename = path.basename(args.path);
 
         const result = await less.render(content, {
-          rootpath: './',
+          filename,
+          rootpath: dir,
           paths: [...(options.paths || []), dir],
           ...options,
         });
@@ -32,6 +34,7 @@ export function lessLoader(options: Less.Options = {}): Plugin {
         return {
           contents: result.css,
           loader: 'css',
+          resolveDir: dir,
         };
       });
     },

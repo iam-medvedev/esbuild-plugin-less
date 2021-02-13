@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-less",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "esbuild plugin for less files",
   "repository": "https://github.com/iam-medvedev/esbuild-plugin-less.git",
   "homepage": "https://github.com/iam-medvedev/esbuild-plugin-less#readme",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@types/less": "^3.0.2",
-    "less": "^4.1.0"
+    "less": "^4.1.1"
   },
   "keywords": [
     "esbuild",

@@ -46,12 +46,13 @@ describe('less-loader', () => {
   it('build imported .less files', () => {
     const css = result[1].text;
 
-    expect(css).toMatch(`.included-style-2`);
-    expect(css).toMatch(`.included-style-3`);
+    expect(css).toMatch(`.style-2-less`);
+    expect(css).toMatch(`.style-3-less`);
   });
 
-  it('build imported (inline) .css files', () => {
+  it('build imported .css files', () => {
     const css = result[1].text;
-    expect(css).toMatch(`#style-css`);
+    expect(css).toMatch(`#style-4-css`);
+    expect(css).toMatch(`#style-5-css`);
   });
 });
