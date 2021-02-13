@@ -18,7 +18,7 @@ export function lessLoader(options: Less.Options = {}): Plugin {
         };
       });
 
-      // Compilation
+      // Build .less files
       build.onLoad({ filter: /.*/, namespace }, async (args) => {
         const content = await fs.readFile(args.path, 'utf-8');
         const dir = path.dirname(args.path);
@@ -27,8 +27,8 @@ export function lessLoader(options: Less.Options = {}): Plugin {
         const result = await less.render(content, {
           filename,
           rootpath: dir,
-          paths: [...(options.paths || []), dir],
           ...options,
+          paths: [...(options.paths || []), dir],
         });
 
         return {
