@@ -5,6 +5,7 @@
 [![David](https://img.shields.io/david/dev/iam-medvedev/esbuild-plugin-less)](https://david-dm.org/iam-medvedev/esbuild-plugin-less)
 [![Codecov](https://img.shields.io/codecov/c/github/iam-medvedev/esbuild-plugin-less)](https://codecov.io/gh/iam-medvedev/esbuild-plugin-less)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_shield)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 # esbuild-plugin-less
 
