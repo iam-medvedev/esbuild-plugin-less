@@ -3,8 +3,19 @@ import * as path from 'path';
 
 const formats: Format[] = ['cjs', 'esm'];
 
+const getOutputFilename = (format: Format) => {
+  switch (format) {
+    case 'esm':
+      return `${format}.mjs`;
+    default:
+      return `${format}.js`;
+  }
+};
+
 const createBuild = () => {
   formats.map((format) => {
+    const outputFilename = getOutputFilename(format);
+
     build({
       entryPoints: [path.resolve(__dirname, '..', 'src', 'index.ts')],
       bundle: true,
@@ -14,14 +25,14 @@ const createBuild = () => {
         '.ts': 'ts',
       },
       external: ['less', 'path', 'fs'],
-      outfile: path.resolve(__dirname, '..', 'build', `${format}.js`),
+      outfile: path.resolve(__dirname, '..', 'build', outputFilename),
       format,
     })
       .then(() => {
-        console.info(`— ${format}.js was built`);
+        console.info(`— ${outputFilename} was built`);
       })
       .catch((e) => {
-        console.info(`🚨 ${format}.js build error:`);
+        console.info(`🚨 ${outputFilename} build error:`);
         console.error(e);
       });
   });
