@@ -2,7 +2,21 @@ import * as path from 'path';
 import { build } from 'esbuild';
 import { lessLoader } from '../src/index';
 
+// isProduction flag for watch mode
+const isProduction = process.env.NODE_ENV === 'production';
+
 build({
+  watch: isProduction
+    ? false
+    : {
+        onRebuild(error) {
+          if (error) {
+            console.error('Build failed:', error);
+          } else {
+            console.error('Build succeeded');
+          }
+        },
+      },
   entryPoints: [path.resolve(__dirname, 'index.ts')],
   bundle: true,
   outdir: path.resolve(__dirname, 'output'),
