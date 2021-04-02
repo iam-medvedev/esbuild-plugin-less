@@ -10,10 +10,8 @@ build({
     ? false
     : {
         onRebuild(error) {
-          if (error) {
-            console.error('Build failed:', error);
-          } else {
-            console.error('Build succeeded');
+          if (!error) {
+            console.log('Build succeeded');
           }
         },
       },

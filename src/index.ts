@@ -2,10 +2,10 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { Plugin } from 'esbuild';
 import less from 'less';
-import { getLessImports } from './less-utils';
+import { convertLessError, getLessImports } from './less-utils';
 
 /** Less-loader for esbuild */
-export function lessLoader(options: Less.Options = {}): Plugin {
+export const lessLoader = (options: Less.Options = {}): Plugin => {
   return {
     name: 'less-loader',
     setup: (build) => {
@@ -25,19 +25,26 @@ export function lessLoader(options: Less.Options = {}): Plugin {
         const dir = path.dirname(args.path);
         const filename = path.basename(args.path);
 
-        const result = await less.render(content, {
-          filename,
-          rootpath: dir,
-          ...options,
-          paths: [...(options.paths || []), dir],
-        });
+        try {
+          const result = await less.render(content, {
+            filename,
+            rootpath: dir,
+            ...options,
+            paths: [...(options.paths || []), dir],
+          });
 
-        return {
-          contents: result.css,
-          loader: 'css',
-          resolveDir: dir,
-        };
+          return {
+            contents: result.css,
+            loader: 'css',
+            resolveDir: dir,
+          };
+        } catch (e) {
+          return {
+            errors: [convertLessError(e)],
+            resolveDir: dir,
+          };
+        }
       });
     },
   };
-}
+};
