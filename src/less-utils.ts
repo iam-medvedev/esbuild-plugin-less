@@ -23,7 +23,10 @@ export const getLessImports = (filePath: string): string[] => {
         return match[2];
       })
       .filter((el) => !!el)
-      .map((el) => path.resolve(dir, el));
+      // NOTE: According to the docs, extensionless imports are interpreted as '.less' files.
+      // http://lesscss.org/features/#import-atrules-feature-file-extensions
+      // https://github.com/iam-medvedev/esbuild-plugin-less/issues/13
+      .map((el) => path.resolve(dir, path.extname(el) ? el : `${el}.less`));
 
     const recursiveImports = fileImports.reduce((result, el) => {
       return [...result, ...getLessImports(el)];
