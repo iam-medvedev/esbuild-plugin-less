@@ -20,6 +20,10 @@ const buildLess = async ({ lessOptions }: { lessOptions?: Less.Options } = {}) =
 };
 
 describe('less-loader', () => {
+  it('exported module', () => {
+    expect(lessLoader).toBeDefined();
+  });
+
   it('onResolve with watch mode', () => {
     const plugin = lessLoader();
 
@@ -47,7 +51,7 @@ describe('less-loader', () => {
     });
   });
 
-  it('build is successful', async () => {
+  it('builds successful', async () => {
     const primaryColor = '#ff0000';
     const result = await buildLess({
       lessOptions: {
@@ -69,7 +73,7 @@ describe('less-loader', () => {
     expect(css).toMatch(`body article:first-child{width:200px}`);
   });
 
-  it('build imported .less files', async () => {
+  it('builds imported .less files', async () => {
     const result = await buildLess({
       lessOptions: {
         globalVars: {
@@ -84,7 +88,7 @@ describe('less-loader', () => {
     expect(css).toMatch(`.style-3-less`);
   });
 
-  it('build imported .css files', async () => {
+  it('builds imported .css files', async () => {
     const result = await buildLess({
       lessOptions: {
         globalVars: {
@@ -98,7 +102,7 @@ describe('less-loader', () => {
     expect(css).toMatch(`#style-5-css`);
   });
 
-  it('catch less error', async () => {
+  it('catches less error', async () => {
     await expect(
       buildLess({
         lessOptions: {
