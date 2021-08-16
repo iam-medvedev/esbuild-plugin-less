@@ -1,0 +1,14 @@
+@import './style-2.less';
+@import './inner/style-4.css';
+
+body {
+  background: @primaryColor; // This var is defined in build.ts
+
+  & article {
+    width: 100px;
+
+    &:first-child {
+      width: 200px;
+    }
+  }
+}
