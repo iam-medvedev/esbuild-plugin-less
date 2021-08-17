@@ -63,6 +63,14 @@ build({
 
 `lessLoader` accepts all valid options from less.js. You can find a complete list of options [here](http://lesscss.org/usage/#less-options).
 
+`LoaderOptions` loader options, support custom [filter](https://esbuild.github.io/plugins/#filters)
+```
+{
+  filter: /\.less$/,
+}
+```
+
+
 ## License
 
 `esbuild-plugin-less` is [WTFPL licensed](./LICENSE).
