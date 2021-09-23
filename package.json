@@ -19,7 +19,6 @@
     "dev:example": "ts-node ./example/build.ts",
     "build:example": "NODE_ENV=production ts-node ./example/build.ts",
     "commit": "yarn git-cz",
-    "prepublish": "yarn test && yarn types && yarn build",
     "types": "NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir build",
     "test": "jest"
   },
@@ -41,7 +40,7 @@
     "@types/jest": "^26.0.23",
     "@types/node": "^15.9.0",
     "cz-conventional-changelog": "^3.3.0",
-    "esbuild": "^0.12.5",
+    "esbuild": "^0.13.1",
     "git-cz": "^4.7.6",
     "husky": "^6.0.0",
     "jest": "^27.0.3",
@@ -53,7 +52,7 @@
     "typescript": "^4.3.2"
   },
   "peerDependencies": {
-    "esbuild": "^0.12.x"
+    "esbuild": "^0.13.x"
   },
   "dependencies": {
     "@types/less": "^3.0.2",
