@@ -16,10 +16,11 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production ts-node ./scripts/build.ts",
+    "build:types": "NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir build",
     "dev:example": "ts-node ./example/build.ts",
     "build:example": "NODE_ENV=production ts-node ./example/build.ts",
     "commit": "yarn git-cz",
-    "types": "NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir build",
+    "types": "tsc --noEmit",
     "test": "jest"
   },
   "exports": {
@@ -40,7 +41,7 @@
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.6",
     "cz-conventional-changelog": "^3.3.0",
-    "esbuild": "^0.13.1",
+    "esbuild": "^0.13.2",
     "git-cz": "^4.7.6",
     "husky": "^7.0.2",
     "jest": "^27.2.1",

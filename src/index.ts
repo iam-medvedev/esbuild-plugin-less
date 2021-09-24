@@ -6,7 +6,7 @@ import { convertLessError, getLessImports } from './less-utils';
 
 export interface LoaderOptions {
   /* custom filter */
-  filter?: RegExp,
+  filter?: RegExp;
 }
 
 /** Less-loader for esbuild */
