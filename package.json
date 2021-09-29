@@ -39,7 +39,7 @@
     "@semantic-release/npm": "8.0.0",
     "@semantic-release/release-notes-generator": "10.0.2",
     "@types/jest": "27.0.2",
-    "@types/node": "16.9.6",
+    "@types/node": "16.10.2",
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "0.13.3",
     "git-cz": "4.7.6",
