@@ -19,7 +19,10 @@ const buildLess = async ({ lessOptions }: { lessOptions?: Less.Options } = {}) =
   return outputFiles;
 };
 
-const buildLessWithOption = async ({ lessOptions, loaderOptions }: { lessOptions?: Less.Options, loaderOptions?: LoaderOptions} = {}) => {
+const buildLessWithOption = async ({
+  lessOptions,
+  loaderOptions,
+}: { lessOptions?: Less.Options; loaderOptions?: LoaderOptions } = {}) => {
   const buildOptions: BuildOptions = {
     entryPoints: [path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts')],
     bundle: true,
@@ -55,7 +58,7 @@ describe('less-loader', () => {
       onStart: jest.fn(),
       onEnd: jest.fn(),
       onLoad: jest.fn(),
-    } as PluginBuild;
+    } as unknown as PluginBuild;
 
     plugin.setup(build);
 
@@ -99,8 +102,8 @@ describe('less-loader', () => {
         },
       },
       loaderOptions: {
-        filter: /\._?less_?$/
-      }
+        filter: /\._?less_?$/,
+      },
     });
 
     expect(result.length).toStrictEqual(2);
@@ -138,8 +141,8 @@ describe('less-loader', () => {
         },
       },
       loaderOptions: {
-        filter: /\._?less_?$/
-      }
+        filter: /\._?less_?$/,
+      },
     });
 
     const css = result[1].text;
