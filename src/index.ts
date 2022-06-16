@@ -15,6 +15,7 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
     name: 'less-loader',
     setup: (build) => {
       const filter = loaderOptions.filter;
+
       // Resolve *.less files with namespace
       build.onResolve({ filter: filter || /\.less$/, namespace: 'file' }, (args) => {
         const filePath = path.resolve(process.cwd(), path.relative(process.cwd(), args.resolveDir), args.path);
@@ -28,14 +29,16 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
       build.onLoad({ filter: filter || /\.less$/, namespace: 'file' }, async (args) => {
         const content = await fs.readFile(args.path, 'utf-8');
         const dir = path.dirname(args.path);
-        const filename = path.basename(args.path);
+
+        const opts: Less.Options = {
+          filename: args.path,
+          relativeUrls: true,
+          ...options,
+          paths: [...(options.paths || []), dir],
+        } as any;
+
         try {
-          const result = await less.render(content, {
-            filename,
-            rootpath: dir,
-            ...options,
-            paths: [...(options.paths || []), dir],
-          });
+          const result = await less.render(content, opts);
 
           return {
             contents: result.css,

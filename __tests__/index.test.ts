@@ -2,6 +2,12 @@ import * as path from 'path';
 import { build, BuildOptions, PluginBuild } from 'esbuild';
 import { lessLoader, LoaderOptions } from '../src/index';
 
+const entryPoints = [
+  path.resolve(__dirname, '../', 'example', 'index.ts'),
+  path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts'),
+  path.resolve(__dirname, '../', 'example', 'index.less'),
+];
+
 const commonOptions: BuildOptions = {
   bundle: true,
   write: false,
@@ -17,7 +23,7 @@ const commonOptions: BuildOptions = {
 const buildLess = async ({
   lessOptions,
   loaderOptions,
-  entryPoint = path.resolve(__dirname, '../', 'example', 'index.ts'),
+  entryPoint = entryPoints[0],
 }: { lessOptions?: Less.Options; loaderOptions?: LoaderOptions; entryPoint?: string } = {}) => {
   const buildOptions: BuildOptions = {
     ...commonOptions,
@@ -83,11 +89,26 @@ describe('less-loader', () => {
       loaderOptions: {
         filter: /\._?less_?$/,
       },
-      entryPoint: path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts'),
+      entryPoint: entryPoints[1],
     });
 
     // Result has compiled .less
     expect(result![1].text).toMatchSnapshot();
+  });
+
+  it('builds successful with less as entrypoint', async () => {
+    const primaryColor = '#ff0000';
+    const result = await buildLess({
+      lessOptions: {
+        globalVars: {
+          primaryColor,
+        },
+      },
+      entryPoint: entryPoints[2],
+    });
+
+    // Result has compiled .less
+    expect(result![0].text).toMatchSnapshot();
   });
 
   it('builds imported .less files', async () => {
@@ -112,7 +133,7 @@ describe('less-loader', () => {
       loaderOptions: {
         filter: /\._?less_?$/,
       },
-      entryPoint: path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts'),
+      entryPoint: entryPoints[1],
     });
 
     expect(result![1].text).toMatchSnapshot();

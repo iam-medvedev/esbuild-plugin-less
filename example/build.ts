@@ -4,6 +4,8 @@ import { lessLoader } from '../src/index';
 
 // isProduction flag for watch mode
 const isProduction = process.env.NODE_ENV === 'production';
+const entryPoints = [path.resolve(__dirname, 'index.ts'), path.resolve(__dirname, 'index.less')];
+const entryPoint = process.argv.includes('--less') ? entryPoints[1] : entryPoints[0];
 
 build({
   watch: isProduction
@@ -15,7 +17,7 @@ build({
           }
         },
       },
-  entryPoints: [path.resolve(__dirname, 'index.ts')],
+  entryPoints: [entryPoint],
   bundle: true,
   outdir: path.resolve(__dirname, 'output'),
   plugins: [
@@ -27,5 +29,7 @@ build({
   ],
   loader: {
     '.ts': 'ts',
+    '.png': 'base64',
+    '.jpg': 'base64',
   },
 }).catch((e) => console.error(e.message));
