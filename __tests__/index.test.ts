@@ -11,6 +11,8 @@ const buildLess = async ({ lessOptions }: { lessOptions?: Less.Options } = {}) =
     outdir: path.resolve(__dirname, 'output'),
     loader: {
       '.ts': 'ts',
+      // '.png': 'file',
+      // '.jpg': 'file',
     },
     plugins: [lessLoader(lessOptions)],
   };
@@ -31,6 +33,8 @@ const buildLessWithOption = async ({
     outdir: path.resolve(__dirname, 'output'),
     loader: {
       '.ts': 'ts',
+      // '.png': 'file',
+      // '.jpg': 'file',
     },
     plugins: [lessLoader(lessOptions, loaderOptions)],
   };
@@ -44,10 +48,10 @@ describe('less-loader', () => {
     expect(lessLoader).toBeDefined();
   });
 
-  it('onResolve with watch mode', () => {
+  it('onResolve with watch mode', async () => {
     const plugin = lessLoader();
 
-    let onResolveCallback = null;
+    let onResolveCallback: null | Function = null;
     const build = {
       initialOptions: {
         watch: true,
@@ -60,15 +64,12 @@ describe('less-loader', () => {
       onLoad: jest.fn(),
     } as unknown as PluginBuild;
 
-    plugin.setup(build);
+    await plugin.setup(build);
 
     const path = '/path';
-    const onResolveResult = onResolveCallback({ resolveDir: '/', path });
+    const onResolveResult = onResolveCallback !== null && (onResolveCallback as Function)({ resolveDir: '/', path });
 
-    expect(onResolveResult).toMatchObject({
-      path,
-      watchFiles: [path],
-    });
+    expect(onResolveResult).toMatchSnapshot();
   });
 
   it('builds successful', async () => {
@@ -81,16 +82,14 @@ describe('less-loader', () => {
       },
     });
 
-    expect(result.length).toStrictEqual(2);
+    expect(result!.length).toStrictEqual(2);
 
-    expect(path.extname(result[0].path)).toStrictEqual('.js');
-    expect(path.extname(result[1].path)).toStrictEqual('.css');
+    expect(path.extname(result![0].path)).toStrictEqual('.js');
+    expect(path.extname(result![1].path)).toStrictEqual('.css');
 
     // Result has compiled .less
-    const css = result[1].text;
-    expect(css).toMatch(`background:${primaryColor}`);
-    expect(css).toMatch(`body article{width:100px}`);
-    expect(css).toMatch(`body article:first-child{width:200px}`);
+    const css = result![1].text;
+    expect(css).toMatchSnapshot();
   });
 
   it('builds successful custom filter', async () => {
@@ -106,16 +105,14 @@ describe('less-loader', () => {
       },
     });
 
-    expect(result.length).toStrictEqual(2);
+    expect(result!.length).toStrictEqual(2);
 
-    expect(path.extname(result[0].path)).toStrictEqual('.js');
-    expect(path.extname(result[1].path)).toStrictEqual('.css');
+    expect(path.extname(result![0].path)).toStrictEqual('.js');
+    expect(path.extname(result![1].path)).toStrictEqual('.css');
 
-    // Result has compiled .less
-    const css = result[1].text;
-    expect(css).toMatch(`background:${primaryColor}`);
-    expect(css).toMatch(`body article{width:100px}`);
-    expect(css).toMatch(`body article:first-child{width:200px}`);
+    // Result! has compiled .less
+    const css = result![1].text;
+    expect(css).toMatchSnapshot();
   });
 
   it('builds imported .less files', async () => {
@@ -127,10 +124,9 @@ describe('less-loader', () => {
       },
     });
 
-    const css = result[1].text;
+    const css = result![1].text;
 
-    expect(css).toMatch(`.style-2-less`);
-    expect(css).toMatch(`.style-3-less`);
+    expect(css).toMatchSnapshot();
   });
 
   it('builds imported ._less_ files', async () => {
@@ -145,10 +141,9 @@ describe('less-loader', () => {
       },
     });
 
-    const css = result[1].text;
+    const css = result![1].text;
 
-    expect(css).toMatch(`.style-2-less`);
-    expect(css).toMatch(`.style-3-less`);
+    expect(css).toMatchSnapshot();
   });
 
   it('builds imported .css files', async () => {
@@ -160,9 +155,9 @@ describe('less-loader', () => {
       },
     });
 
-    const css = result[1].text;
-    expect(css).toMatch(`#style-4-css`);
-    expect(css).toMatch(`#style-5-css`);
+    const css = result![1].text;
+    expect(css).toMatchSnapshot();
+    expect(css).toMatchSnapshot();
   });
 
   it('catches less error', async () => {

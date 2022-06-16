@@ -21,7 +21,8 @@
     "build:example": "NODE_ENV=production ts-node ./example/build.ts",
     "commit": "yarn git-cz",
     "types": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest --watch",
+    "test:ci": "jest"
   },
   "exports": {
     "import": "./build/esm.mjs",
