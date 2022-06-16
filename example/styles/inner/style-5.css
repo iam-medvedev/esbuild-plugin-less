@@ -1,4 +1,5 @@
 #style-5-css {
   position: -webkit-sticky;
   position: sticky;
+  background: url("./image.png") no-repeat;
 }
