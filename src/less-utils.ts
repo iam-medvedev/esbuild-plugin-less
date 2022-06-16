@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { PartialMessage } from 'esbuild';
 
-const importRegex = /@import(?:\s+\((.*)\))?\s+['"](.*)['"]/;
-const globalImportRegex = /@import(?:\s+\((.*)\))?\s+['"](.*)['"]/g;
+const importRegex = /@import.*?["']([^"']+)["'].*?/;
+const globalImportRegex = /@import.*?["']([^"']+)["'].*?/g;
 const importCommentRegex = /(?:\/\*(?:[\s\S]*?)\*\/)|(\/\/(?:.*)$)/gm;
 
 const extWhitelist = ['.css', '.less'];
@@ -20,7 +20,7 @@ export const getLessImports = (filePath: string): string[] => {
     const fileImports = match
       .map((el) => {
         const match = el.match(importRegex);
-        return match[2];
+        return match[1];
       })
       .filter((el) => !!el)
       // NOTE: According to the docs, extensionless imports are interpreted as '.less' files.

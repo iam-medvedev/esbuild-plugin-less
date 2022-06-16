@@ -17,11 +17,14 @@
   "scripts": {
     "build": "NODE_ENV=production ts-node ./scripts/build.ts",
     "build:types": "NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir build",
-    "dev:example": "ts-node ./example/build.ts",
-    "build:example": "NODE_ENV=production ts-node ./example/build.ts",
+    "dev:example-ts": "ts-node ./example/build.ts --ts",
+    "build:example-ts": "NODE_ENV=production ts-node ./example/build.ts --ts",
+    "dev:example-less": "ts-node ./example/build.ts --less",
+    "build:example-less": "NODE_ENV=production ts-node ./example/build.ts --less",
     "commit": "yarn git-cz",
     "types": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest --watch",
+    "test:ci": "jest"
   },
   "exports": {
     "import": "./build/esm.mjs",
@@ -57,7 +60,7 @@
   },
   "dependencies": {
     "@types/less": "^3.0.3",
-    "less": "^4.1.1"
+    "less": "^4.1.3"
   },
   "keywords": [
     "esbuild",

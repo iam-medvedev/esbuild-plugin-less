@@ -2,36 +2,32 @@ import * as path from 'path';
 import { build, BuildOptions, PluginBuild } from 'esbuild';
 import { lessLoader, LoaderOptions } from '../src/index';
 
-const buildLess = async ({ lessOptions }: { lessOptions?: Less.Options } = {}) => {
-  const buildOptions: BuildOptions = {
-    entryPoints: [path.resolve(__dirname, '../', 'example', 'index.ts')],
-    bundle: true,
-    write: false,
-    minify: true,
-    outdir: path.resolve(__dirname, 'output'),
-    loader: {
-      '.ts': 'ts',
-    },
-    plugins: [lessLoader(lessOptions)],
-  };
+const entryPoints = [
+  path.resolve(__dirname, '../', 'example', 'index.ts'),
+  path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts'),
+  path.resolve(__dirname, '../', 'example', 'index.less'),
+];
 
-  const { outputFiles } = await build(buildOptions);
-  return outputFiles;
+const commonOptions: BuildOptions = {
+  bundle: true,
+  write: false,
+  minify: true,
+  outdir: path.resolve(__dirname, 'output'),
+  loader: {
+    '.ts': 'ts',
+    '.png': 'dataurl',
+    '.jpg': 'dataurl',
+  },
 };
 
-const buildLessWithOption = async ({
+const buildLess = async ({
   lessOptions,
   loaderOptions,
-}: { lessOptions?: Less.Options; loaderOptions?: LoaderOptions } = {}) => {
+  entryPoint = entryPoints[0],
+}: { lessOptions?: Less.Options; loaderOptions?: LoaderOptions; entryPoint?: string } = {}) => {
   const buildOptions: BuildOptions = {
-    entryPoints: [path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts')],
-    bundle: true,
-    write: false,
-    minify: true,
-    outdir: path.resolve(__dirname, 'output'),
-    loader: {
-      '.ts': 'ts',
-    },
+    ...commonOptions,
+    entryPoints: [entryPoint],
     plugins: [lessLoader(lessOptions, loaderOptions)],
   };
 
@@ -44,10 +40,10 @@ describe('less-loader', () => {
     expect(lessLoader).toBeDefined();
   });
 
-  it('onResolve with watch mode', () => {
+  it('onResolve with watch mode', async () => {
     const plugin = lessLoader();
 
-    let onResolveCallback = null;
+    let onResolveCallback: null | Function = null;
     const build = {
       initialOptions: {
         watch: true,
@@ -60,15 +56,12 @@ describe('less-loader', () => {
       onLoad: jest.fn(),
     } as unknown as PluginBuild;
 
-    plugin.setup(build);
+    await plugin.setup(build);
 
     const path = '/path';
-    const onResolveResult = onResolveCallback({ resolveDir: '/', path });
+    const onResolveResult = onResolveCallback !== null && (onResolveCallback as Function)({ resolveDir: '/', path });
 
-    expect(onResolveResult).toMatchObject({
-      path,
-      watchFiles: [path],
-    });
+    expect(onResolveResult).toMatchSnapshot();
   });
 
   it('builds successful', async () => {
@@ -81,21 +74,13 @@ describe('less-loader', () => {
       },
     });
 
-    expect(result.length).toStrictEqual(2);
-
-    expect(path.extname(result[0].path)).toStrictEqual('.js');
-    expect(path.extname(result[1].path)).toStrictEqual('.css');
-
     // Result has compiled .less
-    const css = result[1].text;
-    expect(css).toMatch(`background:${primaryColor}`);
-    expect(css).toMatch(`body article{width:100px}`);
-    expect(css).toMatch(`body article:first-child{width:200px}`);
+    expect(result![1].text).toMatchSnapshot();
   });
 
   it('builds successful custom filter', async () => {
     const primaryColor = '#ff0000';
-    const result = await buildLessWithOption({
+    const result = await buildLess({
       lessOptions: {
         globalVars: {
           primaryColor,
@@ -104,18 +89,26 @@ describe('less-loader', () => {
       loaderOptions: {
         filter: /\._?less_?$/,
       },
+      entryPoint: entryPoints[1],
     });
 
-    expect(result.length).toStrictEqual(2);
+    // Result has compiled .less
+    expect(result![1].text).toMatchSnapshot();
+  });
 
-    expect(path.extname(result[0].path)).toStrictEqual('.js');
-    expect(path.extname(result[1].path)).toStrictEqual('.css');
+  it('builds successful with less as entrypoint', async () => {
+    const primaryColor = '#ff0000';
+    const result = await buildLess({
+      lessOptions: {
+        globalVars: {
+          primaryColor,
+        },
+      },
+      entryPoint: entryPoints[2],
+    });
 
     // Result has compiled .less
-    const css = result[1].text;
-    expect(css).toMatch(`background:${primaryColor}`);
-    expect(css).toMatch(`body article{width:100px}`);
-    expect(css).toMatch(`body article:first-child{width:200px}`);
+    expect(result![0].text).toMatchSnapshot();
   });
 
   it('builds imported .less files', async () => {
@@ -127,14 +120,11 @@ describe('less-loader', () => {
       },
     });
 
-    const css = result[1].text;
-
-    expect(css).toMatch(`.style-2-less`);
-    expect(css).toMatch(`.style-3-less`);
+    expect(result![1].text).toMatchSnapshot();
   });
 
   it('builds imported ._less_ files', async () => {
-    const result = await buildLessWithOption({
+    const result = await buildLess({
       lessOptions: {
         globalVars: {
           primaryColor: '#ff0000',
@@ -143,12 +133,10 @@ describe('less-loader', () => {
       loaderOptions: {
         filter: /\._?less_?$/,
       },
+      entryPoint: entryPoints[1],
     });
 
-    const css = result[1].text;
-
-    expect(css).toMatch(`.style-2-less`);
-    expect(css).toMatch(`.style-3-less`);
+    expect(result![1].text).toMatchSnapshot();
   });
 
   it('builds imported .css files', async () => {
@@ -160,9 +148,7 @@ describe('less-loader', () => {
       },
     });
 
-    const css = result[1].text;
-    expect(css).toMatch(`#style-4-css`);
-    expect(css).toMatch(`#style-5-css`);
+    expect(result![1].text).toMatchSnapshot();
   });
 
   it('catches less error', async () => {
