@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import path from 'path';
 import { convertLessError, getLessImports } from '../src/less-utils';
 

@@ -1,39 +1,39 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`less-loader builds imported ._less_ files 1`] = `
+exports[`less-loader > builds imported ._less_ files 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}
 "
 `;
 
-exports[`less-loader builds imported .css files 1`] = `
+exports[`less-loader > builds imported .css files 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}
 "
 `;
 
-exports[`less-loader builds imported .less files 1`] = `
+exports[`less-loader > builds imported .less files 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}
 "
 `;
 
-exports[`less-loader builds successful 1`] = `
+exports[`less-loader > builds successful 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}
 "
 `;
 
-exports[`less-loader builds successful custom filter 1`] = `
+exports[`less-loader > builds successful custom filter 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}
 "
 `;
 
-exports[`less-loader builds successful with less as entrypoint 1`] = `
+exports[`less-loader > builds successful with less as entrypoint 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}
 "
 `;
 
-exports[`less-loader onResolve with watch mode 1`] = `
-Object {
+exports[`less-loader > onResolve with watch mode 1`] = `
+{
   "path": "/path",
-  "watchFiles": Array [
+  "watchFiles": [
     "/path",
   ],
 }

@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest';
 import * as path from 'path';
 import { build, BuildOptions, PluginBuild } from 'esbuild';
 import { lessLoader, LoaderOptions } from '../src/index';
@@ -51,9 +52,9 @@ describe('less-loader', () => {
       onResolve: (opts, callback) => {
         onResolveCallback = callback;
       },
-      onStart: jest.fn(),
-      onEnd: jest.fn(),
-      onLoad: jest.fn(),
+      onStart: vi.fn(),
+      onEnd: vi.fn(),
+      onLoad: vi.fn(),
     } as unknown as PluginBuild;
 
     await plugin.setup(build);
