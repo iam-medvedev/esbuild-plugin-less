@@ -15,7 +15,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14
-      - run: yarn --frozen-lockfile
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn add --cached
 
       - name: Check types
         run: yarn types

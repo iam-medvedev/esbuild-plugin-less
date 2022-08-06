@@ -4,3 +4,6 @@ example/output
 __tests__/output
 coverage
 *.log
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
