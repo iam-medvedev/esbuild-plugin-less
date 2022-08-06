@@ -24,11 +24,11 @@ describe('less-utils', () => {
     expect(imports).toEqual([]);
   });
 
-  it('converts less error into esbuild error', () => {
+  it('converts less error into esbuild error with 3-line-error', () => {
     const lessError = {
       type: 'Name',
       message: 'variable @some-undefined-var is undefined',
-      filename: '/Users/imedvedev/projects/esbuild-plugin-less/example/styles/style-2.less',
+      filename: '/example/styles/style-2.less',
       index: 63,
       line: 4,
       column: 14,
@@ -45,6 +45,31 @@ describe('less-utils', () => {
         line: lessError.line,
         column: lessError.column,
         lineText: lessError.extract[1],
+      },
+    });
+  });
+
+  it('converts less error into esbuild error with 1-line-error', () => {
+    const lessError = {
+      type: 'Name',
+      message: 'variable @some-undefined-var is undefined',
+      filename: '/example/styles/style-2.less',
+      index: 0,
+      line: 0,
+      column: 0,
+      extract: ['.style-2-less {'],
+    };
+
+    const error = convertLessError(lessError);
+
+    expect(error).toMatchObject({
+      text: lessError.message,
+      location: {
+        namespace: 'file',
+        file: lessError.filename,
+        line: lessError.line,
+        column: lessError.column,
+        lineText: lessError.extract[0],
       },
     });
   });
