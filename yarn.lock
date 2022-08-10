@@ -2215,7 +2215,7 @@ __metadata:
     typescript: 4.7.4
     vitest: ^0.20.3
   peerDependencies:
-    esbuild: ^0.14.x
+    esbuild: ^0.14.x || ^0.15.0
   languageName: unknown
   linkType: soft
 
