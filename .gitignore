@@ -3,6 +3,7 @@ node_modules
 example/output
 __tests__/output
 coverage
+coverage.xml
 *.log
 .yarn/*
 !.yarn/releases
