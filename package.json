@@ -56,7 +56,7 @@
     "vitest": "^0.25.2"
   },
   "peerDependencies": {
-    "esbuild": "^0.14.x || ^0.15.0"
+    "esbuild": "^0.14.x || ^0.15.0 || ^0.16.0"
   },
   "dependencies": {
     "@types/less": "^3.0.3",
