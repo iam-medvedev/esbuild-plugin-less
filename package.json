@@ -44,7 +44,7 @@
     "@types/node": "^18.11.9",
     "@vitest/coverage-c8": "^0.25.2",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.15.14",
+    "esbuild": "^0.16.1",
     "git-cz": "4.9.0",
     "husky": "7.0.2",
     "lint-staged": "13.0.3",
