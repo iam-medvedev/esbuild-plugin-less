@@ -2403,7 +2403,7 @@ __metadata:
     vite: ^3.2.4
     vitest: ^0.25.2
   peerDependencies:
-    esbuild: ^0.14.x || ^0.15.0 || ^0.16.0
+    esbuild: ^0.14.x || ^0.15.0 || ^0.16.0 || ^0.17.0
   languageName: unknown
   linkType: soft
 
