@@ -21,7 +21,7 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
         const filePath = path.resolve(process.cwd(), path.relative(process.cwd(), args.resolveDir), args.path);
         return {
           path: filePath,
-          watchFiles: !!build.initialOptions.watch ? [filePath, ...getLessImports(filePath)] : undefined,
+          watchFiles: [filePath, ...getLessImports(filePath)],
         };
       });
 
