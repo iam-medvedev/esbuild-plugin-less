@@ -9,7 +9,7 @@ const importCommentRegex = /(?:\/\*(?:[\s\S]*?)\*\/)|(\/\/(?:.*)$)/gm;
 const extWhitelist = ['.css', '.less'];
 
 /** Recursively get .less/.css imports from file */
-export const getLessImports = (filePath: string): string[] => {
+export const getLessImports = (filePath: string, paths: string[] | undefined): string[] => {
   try {
     const dir = path.dirname(filePath);
     const content = fs.readFileSync(filePath).toString('utf8');
@@ -26,10 +26,24 @@ export const getLessImports = (filePath: string): string[] => {
       // NOTE: According to the docs, extensionless imports are interpreted as '.less' files.
       // http://lesscss.org/features/#import-atrules-feature-file-extensions
       // https://github.com/iam-medvedev/esbuild-plugin-less/issues/13
-      .map((el) => path.resolve(dir, path.extname(el) ? el : `${el}.less`));
+      .map((el) => {
+        // Assume the file exists at the default import. If it does not, check relative to provided
+        // import paths too, and take the first path that resolves to a real file.
+        let filepath = path.resolve(dir, path.extname(el) ? el : `${el}.less`);
+        if (!fs.existsSync(filepath)) {
+          for (var i = 0; i < paths.length; i++) {
+            let f = path.resolve(paths[i], path.extname(el) ? el : `${el}.less`)
+            if (fs.existsSync(f)) {
+              filepath = f;
+              break;
+            }
+          }
+        }
+        return filepath;
+      });
 
     const recursiveImports = fileImports.reduce((result, el) => {
-      return [...result, ...getLessImports(el)];
+      return [...result, ...getLessImports(el, paths)];
     }, fileImports);
 
     const result = recursiveImports.filter((el) => extWhitelist.includes(path.extname(el).toLowerCase()));
