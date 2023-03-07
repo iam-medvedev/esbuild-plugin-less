@@ -17,6 +17,20 @@ describe('less-utils', () => {
     );
   });
 
+  it('get imports paths with options', () => {
+    const filePath = path.resolve(__dirname, '../example/styles/style.less');
+    const imports = getLessImports(filePath, ['../example', '../example/styles']);
+
+    expect(imports).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('styles/style-2.less'),
+        expect.stringContaining('styles/inner/style-3.less'),
+        expect.stringContaining('styles/inner/style-4.css'),
+        expect.stringContaining('styles/inner/style-5.css'),
+      ]),
+    );
+  });
+
   it('get imports paths fail', () => {
     const filePath = path.resolve(__dirname, '../example/styles/unknown-file.less');
     const imports = getLessImports(filePath);

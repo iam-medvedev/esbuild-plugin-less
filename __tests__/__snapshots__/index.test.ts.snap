@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`less-loader > builds imported ._less_ files 1`] = `
 "#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#ff0000}body article{width:100px}body article:first-child{width:200px}

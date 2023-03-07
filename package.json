@@ -42,18 +42,18 @@
     "@semantic-release/npm": "9.0.2",
     "@semantic-release/release-notes-generator": "10.0.3",
     "@types/node": "^18.11.18",
-    "@vitest/coverage-c8": "^0.27.1",
+    "@vitest/coverage-c8": "^0.29.2",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.17.0",
+    "esbuild": "^0.17.11",
     "git-cz": "4.9.0",
     "husky": "7.0.2",
     "lint-staged": "13.1.0",
-    "prettier": "2.8.3",
+    "prettier": "2.8.4",
     "semantic-release": "20.0.2",
     "ts-node": "10.9.1",
     "typescript": "4.9.4",
-    "vite": "^4.0.4",
-    "vitest": "^0.27.1"
+    "vite": "^4.1.4",
+    "vitest": "^0.29.2"
   },
   "peerDependencies": {
     "esbuild": "^0.14.x || ^0.15.0 || ^0.16.0 || ^0.17.0"
