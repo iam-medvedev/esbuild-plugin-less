@@ -17,8 +17,15 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
       const filter = loaderOptions.filter;
 
       // Resolve *.less files with namespace
-      build.onResolve({ filter: filter || /\.less$/, namespace: 'file' }, (args) => {
-        const filePath = path.resolve(process.cwd(), path.relative(process.cwd(), args.resolveDir), args.path);
+      build.onResolve({ filter: filter || /\.less$/, namespace: 'file' }, async (args) => {
+        const pathResolve = await build.resolve(args.path, {
+          kind: args.kind,
+          importer: args.importer,
+          resolveDir: args.resolveDir,
+          pluginData: args.pluginData,
+        })
+        const filePath = pathResolve.path;
+
         return {
           path: filePath,
           watchFiles: [filePath, ...getLessImports(filePath, (options.paths || []))],
