@@ -23,12 +23,12 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
           importer: args.importer,
           resolveDir: args.resolveDir,
           pluginData: args.pluginData,
-        })
+        });
         const filePath = pathResolve.path;
 
         return {
           path: filePath,
-          watchFiles: [filePath, ...getLessImports(filePath, (options.paths || []))],
+          watchFiles: [filePath, ...getLessImports(filePath, options.paths || [])],
         };
       });
 

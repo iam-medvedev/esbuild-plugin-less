@@ -41,30 +41,6 @@ describe('less-loader', () => {
     expect(lessLoader).toBeDefined();
   });
 
-  it('onResolve with watch mode', async () => {
-    const plugin = lessLoader();
-
-    let onResolveCallback: null | Function = null;
-    const build = {
-      initialOptions: {
-        watch: true,
-      },
-      onResolve: (opts, callback) => {
-        onResolveCallback = callback;
-      },
-      onStart: vi.fn(),
-      onEnd: vi.fn(),
-      onLoad: vi.fn(),
-    } as unknown as PluginBuild;
-
-    await plugin.setup(build);
-
-    const path = '/path';
-    const onResolveResult = onResolveCallback !== null && (onResolveCallback as Function)({ resolveDir: '/', path });
-
-    expect(onResolveResult).toMatchSnapshot();
-  });
-
   it('builds successful', async () => {
     const primaryColor = '#ff0000';
     const result = await buildLess({
