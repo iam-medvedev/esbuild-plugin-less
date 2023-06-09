@@ -2578,7 +2578,7 @@ __metadata:
     vite: ^4.1.4
     vitest: ^0.29.2
   peerDependencies:
-    esbuild: ^0.14.x || ^0.15.0 || ^0.16.0 || ^0.17.0
+    esbuild: ^0.14.x || ^0.15.0 || ^0.16.0 || ^0.17.0 || ^0.18.0
   languageName: unknown
   linkType: soft
 
