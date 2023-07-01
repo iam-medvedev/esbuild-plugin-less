@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.14.2
+          node-version: 18.16.1
           cache: 'yarn'
 
       - name: Install dependencies
