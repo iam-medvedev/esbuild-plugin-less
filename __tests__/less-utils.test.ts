@@ -13,6 +13,7 @@ describe('less-utils', () => {
         expect.stringContaining('styles/inner/style-3.less'),
         expect.stringContaining('styles/inner/style-4.css'),
         expect.stringContaining('styles/inner/style-5.css'),
+        expect.stringContaining('styles/without-ext.less'),
       ]),
     );
   });
@@ -27,6 +28,7 @@ describe('less-utils', () => {
         expect.stringContaining('styles/inner/style-3.less'),
         expect.stringContaining('styles/inner/style-4.css'),
         expect.stringContaining('styles/inner/style-5.css'),
+        expect.stringContaining('styles/without-ext.less'),
       ]),
     );
   });

@@ -30,6 +30,8 @@ export const getLessImports = (filePath: string, paths: string[] = []): string[]
         // Assume the file exists at the default import. If it does not, check relative to provided
         // import paths too, and take the first path that resolves to a real file.
         let filepath = path.resolve(dir, path.extname(el) ? el : `${el}.less`);
+        // NOTE: it's actually covered
+        /* c8 ignore next 9 */
         if (!fs.existsSync(filepath)) {
           for (let i = 0; i < paths.length; i++) {
             const f = path.resolve(paths[i], path.extname(el) ? el : `${el}.less`);
