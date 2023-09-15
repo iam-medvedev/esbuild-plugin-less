@@ -1,0 +1,33 @@
+/*
+ * This is a local name with the "local-css" loader
+ * and a global name with the "global-css" loader
+ */
+.button {
+  display: block;
+}
+
+/* This is a local name with both loaders */
+:local(.button) {
+  color: black;
+}
+
+/* This is a global name with both loaders */
+:global(.button) {
+  color: gray;
+}
+
+/* "foo" is global and "bar" is local */
+:global .foo :local .bar {
+  color: red;
+}
+
+/* "foo" is global and "bar" is local */
+:global {
+  .foo {
+    :local {
+      .bar {
+        color: green;
+      }
+    }
+  }
+}

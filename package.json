@@ -15,12 +15,12 @@
     "package.json"
   ],
   "scripts": {
-    "build": "NODE_ENV=production ts-node ./scripts/build.ts",
+    "build": "NODE_ENV=production tsx ./scripts/build.ts",
     "build:types": "NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir build",
-    "dev:example-ts": "ts-node ./example/build.ts --ts",
-    "build:example-ts": "NODE_ENV=production ts-node ./example/build.ts --ts",
-    "dev:example-less": "ts-node ./example/build.ts --less",
-    "build:example-less": "NODE_ENV=production ts-node ./example/build.ts --less",
+    "dev:example-ts": "tsx ./example/build.ts --ts",
+    "build:example-ts": "NODE_ENV=production tsx ./example/build.ts --ts",
+    "dev:example-less": "tsx ./example/build.ts --less",
+    "build:example-less": "NODE_ENV=production tsx ./example/build.ts --less",
     "commit": "yarn git-cz",
     "prepare": "husky install",
     "types": "tsc --noEmit",
@@ -44,29 +44,29 @@
   },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "10.0.1",
-    "@semantic-release/github": "9.0.4",
-    "@semantic-release/npm": "10.0.4",
-    "@semantic-release/release-notes-generator": "11.0.4",
+    "@semantic-release/commit-analyzer": "10.0.4",
+    "@semantic-release/github": "9.0.6",
+    "@semantic-release/npm": "10.0.6",
+    "@semantic-release/release-notes-generator": "11.0.7",
     "@types/node": "^20.5.0",
-    "@vitest/coverage-v8": "^0.34.2",
+    "@vitest/coverage-v8": "^0.34.4",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.19.2",
+    "esbuild": "^0.19.3",
     "git-cz": "4.9.0",
     "husky": "^8.0.3",
-    "lint-staged": "14.0.0",
-    "prettier": "3.0.2",
-    "semantic-release": "21.0.7",
-    "ts-node": "10.9.1",
-    "typescript": "5.1.6",
+    "lint-staged": "14.0.1",
+    "prettier": "3.0.3",
+    "semantic-release": "21.1.1",
+    "tsx": "3.12.10",
+    "typescript": "5.2.2",
     "vite": "^4.4.9",
-    "vitest": "^0.34.2"
+    "vitest": "^0.34.4"
   },
   "peerDependencies": {
     "esbuild": "^0.14.x || ^0.15.0 || ^0.16.0 || ^0.17.0 || ^0.18.0 || ^0.19.0"
   },
   "dependencies": {
-    "@types/less": "^3.0.3",
+    "@types/less": "^3.0.4",
     "less": "^4.2.0"
   },
   "keywords": [

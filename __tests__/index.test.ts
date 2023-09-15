@@ -1,12 +1,13 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import * as path from 'path';
-import { build, BuildOptions, PluginBuild } from 'esbuild';
+import { build, BuildOptions } from 'esbuild';
 import { lessLoader, LoaderOptions } from '../src/index';
 
 const entryPoints = [
   path.resolve(__dirname, '../', 'example', 'index.ts'),
   path.resolve(__dirname, '../', 'example', 'index-custom-filter.ts'),
   path.resolve(__dirname, '../', 'example', 'index.less'),
+  path.resolve(__dirname, '../', 'example', 'test.module.ts'),
 ];
 
 const commonOptions: BuildOptions = {
@@ -21,20 +22,29 @@ const commonOptions: BuildOptions = {
   },
 };
 
-const buildLess = async ({
+type BuildLessProps = {
+  lessOptions?: Less.Options;
+  loaderOptions?: LoaderOptions;
+  entryPoint?: string;
+  buildOptions?: BuildOptions;
+};
+
+async function buildLess({
   lessOptions,
   loaderOptions,
   entryPoint = entryPoints[0],
-}: { lessOptions?: Less.Options; loaderOptions?: LoaderOptions; entryPoint?: string } = {}) => {
+  buildOptions: _buildOptions = {},
+}: BuildLessProps = {}) {
   const buildOptions: BuildOptions = {
     ...commonOptions,
     entryPoints: [entryPoint],
     plugins: [lessLoader(lessOptions, loaderOptions)],
+    ..._buildOptions,
   };
 
   const { outputFiles } = await build(buildOptions);
   return outputFiles;
-};
+}
 
 describe('less-loader', () => {
   it('exported module', () => {
@@ -136,5 +146,19 @@ describe('less-loader', () => {
         },
       }),
     ).rejects.toThrow();
+  });
+
+  it('works with module.less', async () => {
+    const result = await buildLess({
+      entryPoint: entryPoints[3],
+      buildOptions: {
+        format: 'iife',
+      },
+    });
+
+    expect(result!.length).toEqual(2);
+
+    // Result has compiled .less
+    expect(result![1].text).toMatchSnapshot();
   });
 });
