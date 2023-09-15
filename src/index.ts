@@ -37,6 +37,8 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
         const content = await fs.readFile(args.path, 'utf-8');
         const dir = path.dirname(args.path);
 
+        const isModule = path.basename(args.path).endsWith('.module.less');
+
         const opts: Less.Options = {
           filename: args.path,
           relativeUrls: true,
@@ -49,7 +51,7 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
 
           return {
             contents: result.css,
-            loader: 'css',
+            loader: isModule ? 'local-css' : 'css',
             resolveDir: dir,
           };
         } catch (e) {
