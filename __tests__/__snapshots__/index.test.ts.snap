@@ -30,11 +30,7 @@ exports[`less-loader > builds successful with less as entrypoint 1`] = `
 "
 `;
 
-exports[`less-loader > onResolve with watch mode 1`] = `
-{
-  "path": "/path",
-  "watchFiles": [
-    "/path",
-  ],
-}
+exports[`less-loader > works with module.less 1`] = `
+".o{display:block}.o{color:#000}.button{color:gray}.foo .l{color:red}.foo .l{color:green}
+"
 `;

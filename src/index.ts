@@ -1,6 +1,6 @@
+import type { Loader, Plugin } from 'esbuild';
 import path from 'path';
 import { promises as fs } from 'fs';
-import { Plugin } from 'esbuild';
 import less from 'less';
 import { convertLessError, getLessImports } from './less-utils';
 
@@ -36,6 +36,9 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
       build.onLoad({ filter: filter || /\.less$/, namespace: 'file' }, async (args) => {
         const content = await fs.readFile(args.path, 'utf-8');
         const dir = path.dirname(args.path);
+        const basename = path.basename(args.path);
+        const isModule = basename.endsWith('.module.less');
+        const loader: Loader = isModule ? 'local-css' : 'css';
 
         const opts: Less.Options = {
           filename: args.path,
@@ -49,7 +52,7 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
 
           return {
             contents: result.css,
-            loader: 'css',
+            loader,
             resolveDir: dir,
           };
         } catch (e) {
