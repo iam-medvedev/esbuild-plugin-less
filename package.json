@@ -9,7 +9,7 @@
   "license": "WTFPL",
   "main": "build/cjs.js",
   "module": "build/esm.mjs",
-  "types": "build/index.d.ts",
+  "types": "build/src/index.d.ts",
   "files": [
     "build/*",
     "package.json"
@@ -30,11 +30,11 @@
   "exports": {
     "import": {
       "default": "./build/esm.mjs",
-      "types": "./build/index.d.ts"
+      "types": "./build/src/index.d.ts"
     },
     "require": {
       "default": "./build/cjs.js",
-      "types": "./build/index.d.ts"
+      "types": "./build/src/index.d.ts"
     }
   },
   "prettier": {
