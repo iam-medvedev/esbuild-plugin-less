@@ -3,16 +3,16 @@ import * as path from 'path';
 
 const formats: Format[] = ['cjs', 'esm'];
 
-const getOutputFilename = (format: Format) => {
+function getOutputFilename(format: Format) {
   switch (format) {
     case 'esm':
       return `${format}.mjs`;
     default:
       return `${format}.js`;
   }
-};
+}
 
-const createBuild = () => {
+function createBuild() {
   formats.map((format) => {
     const outputFilename = getOutputFilename(format);
 
@@ -36,6 +36,6 @@ const createBuild = () => {
         console.error(e);
       });
   });
-};
+}
 
 createBuild();

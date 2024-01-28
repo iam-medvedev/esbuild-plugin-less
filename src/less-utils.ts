@@ -1,6 +1,6 @@
+import type { PartialMessage } from 'esbuild';
 import fs from 'fs';
 import path from 'path';
-import { PartialMessage } from 'esbuild';
 
 const importRegex = /@import.*?["']([^"']+)["'].*?/;
 const globalImportRegex = /@import.*?["']([^"']+)["'].*?/g;
@@ -9,7 +9,7 @@ const importCommentRegex = /(?:\/\*(?:[\s\S]*?)\*\/)|(\/\/(?:.*)$)/gm;
 const extWhitelist = ['.css', '.less'];
 
 /** Recursively get .less/.css imports from file */
-export const getLessImports = (filePath: string, paths: string[] = []): string[] => {
+export function getLessImports(filePath: string, paths: string[] = []): string[] {
   try {
     const dir = path.dirname(filePath);
     const content = fs.readFileSync(filePath).toString('utf8');
@@ -54,10 +54,10 @@ export const getLessImports = (filePath: string, paths: string[] = []): string[]
   } catch (e) {
     return [];
   }
-};
+}
 
 /** Convert less error into esbuild error */
-export const convertLessError = (error: Less.RenderError): PartialMessage => {
+export function convertLessError(error: Less.RenderError): PartialMessage {
   const sourceLine = error.extract.filter((line) => line);
   const lineText = sourceLine.length === 3 ? sourceLine[1] : sourceLine[0];
 
@@ -71,4 +71,4 @@ export const convertLessError = (error: Less.RenderError): PartialMessage => {
       lineText,
     },
   };
-};
+}

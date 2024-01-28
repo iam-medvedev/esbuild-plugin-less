@@ -10,7 +10,7 @@ export interface LoaderOptions {
 }
 
 /** Less-loader for esbuild */
-export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOptions = {}): Plugin => {
+export function lessLoader(options: Less.Options = {}, loaderOptions: LoaderOptions = {}): Plugin {
   return {
     name: 'less-loader',
     setup: (build) => {
@@ -40,12 +40,12 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
         const isModule = basename.endsWith('.module.less');
         const loader: Loader = isModule ? 'local-css' : 'css';
 
-        const opts: Less.Options = {
+        const opts: Less.Options & { relativeUrls: boolean } = {
           filename: args.path,
           relativeUrls: true,
           ...options,
           paths: [...(options.paths || []), dir],
-        } as any;
+        };
 
         try {
           const result = await less.render(content, opts);
@@ -64,4 +64,4 @@ export const lessLoader = (options: Less.Options = {}, loaderOptions: LoaderOpti
       });
     },
   };
-};
+}
