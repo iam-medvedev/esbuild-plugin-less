@@ -52,7 +52,7 @@ describe('less-loader', () => {
   });
 
   it('builds successful', async () => {
-    const primaryColor = '#ff0000';
+    const primaryColor = '#5d1db2';
     const result = await buildLess({
       lessOptions: {
         globalVars: {
@@ -66,7 +66,7 @@ describe('less-loader', () => {
   });
 
   it('builds successful custom filter', async () => {
-    const primaryColor = '#ff0000';
+    const primaryColor = '#5d1db2';
     const result = await buildLess({
       lessOptions: {
         globalVars: {
@@ -84,7 +84,7 @@ describe('less-loader', () => {
   });
 
   it('builds successful with less as entrypoint', async () => {
-    const primaryColor = '#ff0000';
+    const primaryColor = '#5d1db2';
     const result = await buildLess({
       lessOptions: {
         globalVars: {
@@ -102,7 +102,7 @@ describe('less-loader', () => {
     const result = await buildLess({
       lessOptions: {
         globalVars: {
-          primaryColor: '#ff0000',
+          primaryColor: '#5d1db2',
         },
       },
     });
@@ -114,7 +114,7 @@ describe('less-loader', () => {
     const result = await buildLess({
       lessOptions: {
         globalVars: {
-          primaryColor: '#ff0000',
+          primaryColor: '#5d1db2',
         },
       },
       loaderOptions: {
@@ -130,7 +130,7 @@ describe('less-loader', () => {
     const result = await buildLess({
       lessOptions: {
         globalVars: {
-          primaryColor: '#ff0000',
+          primaryColor: '#5d1db2',
         },
       },
     });
