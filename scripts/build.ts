@@ -12,30 +12,30 @@ function getOutputFilename(format: Format) {
   }
 }
 
-function createBuild() {
-  formats.map((format) => {
+async function createBuild() {
+  for (const format of formats) {
     const outputFilename = getOutputFilename(format);
 
-    build({
-      entryPoints: [path.resolve(__dirname, '..', 'src', 'index.ts')],
-      bundle: true,
-      minify: true,
-      platform: 'node',
-      loader: {
-        '.ts': 'ts',
-      },
-      external: ['less', 'path', 'fs'],
-      outfile: path.resolve(__dirname, '..', 'build', outputFilename),
-      format,
-    })
-      .then(() => {
-        console.info(`— ${outputFilename} was built`);
-      })
-      .catch((e) => {
-        console.info(`🚨 ${outputFilename} build error:`);
-        console.error(e);
+    try {
+      await build({
+        entryPoints: [path.resolve(__dirname, '..', 'src', 'index.ts')],
+        bundle: true,
+        minify: true,
+        platform: 'node',
+        loader: {
+          '.ts': 'ts',
+        },
+        external: ['less', 'path', 'fs'],
+        outfile: path.resolve(__dirname, '..', 'build', outputFilename),
+        format,
       });
-  });
+
+      console.info(`— ${outputFilename} was built`);
+    } catch (e) {
+      console.info(`🚨 ${outputFilename} build error:`);
+      console.error(e);
+    }
+  }
 }
 
 createBuild();

@@ -10,17 +10,15 @@
 
 # esbuild-plugin-less
 
-[esbuild](https://github.com/evanw/esbuild) plugin for less files
+[esbuild](https://github.com/evanw/esbuild) plugin for less files.
 
-## Install
+## Installation
 
-```
+```sh
 yarn add esbuild-plugin-less -D
 ```
 
 ## Usage
-
-### Simple example
 
 You can see the example [here](./example).
 
@@ -32,44 +30,21 @@ build({
   entryPoints: [path.resolve(__dirname, 'index.ts')],
   bundle: true,
   outdir: path.resolve(__dirname, 'output'),
-  plugins: [lessLoader()],
+  plugins: [lessLoader()], // Just plug in
   loader: {
     '.ts': 'ts',
   },
 });
 ```
 
-### Watch mode
-
-More information about watch mode [here](https://esbuild.github.io/api/#watch).
+## Configuration
 
 ```ts
-import { build } from 'esbuild';
-import { lessLoader } from 'esbuild-plugin-less';
-
-build({
-  watch: true, // enable watch mode
-  entryPoints: [path.resolve(__dirname, 'index.ts')],
-  bundle: true,
-  outdir: path.resolve(__dirname, 'output'),
-  plugins: [lessLoader()],
-  loader: {
-    '.ts': 'ts',
-  },
-});
+lessLoader(lessOptions: Less.Options = {}, loaderOptions: LoaderOptions = {})
 ```
 
-## Options
-
-`lessLoader` accepts all valid options from less.js. You can find a complete list of options [here](http://lesscss.org/usage/#less-options).
-
-`LoaderOptions` loader options, support custom [filter](https://esbuild.github.io/plugins/#filters)
-```
-{
-  filter: /\.less$/,
-}
-```
-
+- `options` — Accepts all valid options from less.js. You can find a complete list of options [here](http://lesscss.org/usage/#less-options).
+- `loaderOptions` — Options for the loader. Supports custom esbuild [filter](https://esbuild.github.io/plugins/#filters).
 
 ## License
 
