@@ -1,16 +1,18 @@
 import type { Loader, Plugin } from 'esbuild';
-import path from 'path';
 import { promises as fs } from 'fs';
+import path from 'path';
 import less from 'less';
 import { convertLessError, getLessImports } from './less-utils';
 
 export interface LoaderOptions {
-  /* custom filter */
+  /* Custom filter */
   filter?: RegExp;
 }
 
-/** Less-loader for esbuild */
-export function lessLoader(options: Less.Options = {}, loaderOptions: LoaderOptions = {}): Plugin {
+/**
+ * `esbuild` loader for `.less` files
+ */
+export function lessLoader(lessOptions: Less.Options = {}, loaderOptions: LoaderOptions = {}): Plugin {
   return {
     name: 'less-loader',
     setup: (build) => {
@@ -28,7 +30,7 @@ export function lessLoader(options: Less.Options = {}, loaderOptions: LoaderOpti
 
         return {
           path: filePath,
-          watchFiles: [filePath, ...getLessImports(filePath, options.paths || [])],
+          watchFiles: [filePath, ...getLessImports(filePath, lessOptions.paths || [])],
         };
       });
 
@@ -43,8 +45,8 @@ export function lessLoader(options: Less.Options = {}, loaderOptions: LoaderOpti
         const opts: Less.Options & { relativeUrls: boolean } = {
           filename: args.path,
           relativeUrls: true,
-          ...options,
-          paths: [...(options.paths || []), dir],
+          ...lessOptions,
+          paths: [...(lessOptions.paths || []), dir],
         };
 
         try {
