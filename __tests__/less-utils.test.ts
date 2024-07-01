@@ -7,6 +7,7 @@ describe('less-utils', () => {
     const filePath = path.resolve(__dirname, '../example/styles/style.less');
     const imports = getLessImports(filePath);
 
+    expect(imports).toHaveLength(5);
     expect(imports).toEqual(
       expect.arrayContaining([
         expect.stringContaining('styles/style-2.less'),
@@ -22,6 +23,7 @@ describe('less-utils', () => {
     const filePath = path.resolve(__dirname, '../example/styles/style.less');
     const imports = getLessImports(filePath, ['../example', '../example/styles']);
 
+    expect(imports).toHaveLength(5);
     expect(imports).toEqual(
       expect.arrayContaining([
         expect.stringContaining('styles/style-2.less'),
@@ -31,6 +33,28 @@ describe('less-utils', () => {
         expect.stringContaining('styles/without-ext.less'),
       ]),
     );
+  });
+
+  it('works with recursive imports', () => {
+    const filePath = path.resolve(__dirname, '../example/styles/recursive/a.less');
+    const imports = getLessImports(filePath);
+
+    expect(imports).toHaveLength(2);
+    expect(imports).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('styles/recursive/a.less'),
+        expect.stringContaining('styles/recursive/b.less'),
+      ]),
+    );
+  });
+
+  it('do not process a file if it has already been processed', () => {
+    const filePath = path.resolve(__dirname, '../example/styles/recursive/a.less');
+    const visited = new Set<string>();
+    visited.add(filePath);
+
+    const imports = getLessImports(filePath, [], visited);
+    expect(imports).toHaveLength(0);
   });
 
   it('get imports paths fail', () => {

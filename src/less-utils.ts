@@ -9,8 +9,13 @@ const importCommentRegex = /(?:\/\*(?:[\s\S]*?)\*\/)|(\/\/(?:.*)$)/gm;
 const extWhitelist = ['.css', '.less'];
 
 /** Recursively get .less/.css imports from file */
-export function getLessImports(filePath: string, paths: string[] = []): string[] {
+export function getLessImports(filePath: string, paths: string[] = [], visited: Set<string> = new Set()): string[] {
   try {
+    if (visited.has(filePath)) {
+      return [];
+    }
+    visited.add(filePath);
+
     const dir = path.dirname(filePath);
     const content = fs.readFileSync(filePath).toString('utf8');
 
@@ -45,7 +50,7 @@ export function getLessImports(filePath: string, paths: string[] = []): string[]
       });
 
     const recursiveImports = fileImports.reduce((result, el) => {
-      return [...result, ...getLessImports(el, paths)];
+      return [...result, ...getLessImports(el, paths, visited)];
     }, fileImports);
 
     const result = recursiveImports.filter((el) => extWhitelist.includes(path.extname(el).toLowerCase()));
