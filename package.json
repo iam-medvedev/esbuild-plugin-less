@@ -45,28 +45,28 @@
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "13.0.0",
-    "@semantic-release/github": "10.1.7",
+    "@semantic-release/github": "10.3.5",
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.1",
-    "@types/node": "22.5.0",
-    "@vitest/coverage-v8": "2.0.5",
+    "@types/node": "22.5.5",
+    "@vitest/coverage-v8": "2.1.1",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "0.23.1",
+    "esbuild": "0.24.0",
     "git-cz": "4.9.0",
-    "husky": "9.1.5",
-    "lint-staged": "15.2.9",
+    "husky": "9.1.6",
+    "lint-staged": "15.2.10",
     "prettier": "3.3.3",
-    "semantic-release": "24.1.0",
-    "tsx": "4.19.0",
-    "typescript": "5.5.4",
-    "vite": "5.4.2",
-    "vitest": "2.0.5"
+    "semantic-release": "24.1.1",
+    "tsx": "4.19.1",
+    "typescript": "5.6.2",
+    "vite": "5.4.7",
+    "vitest": "2.1.1"
   },
   "peerDependencies": {
-    "esbuild": ">=0.14.0 <0.23.2"
+    "esbuild": ">=0.14.0 <0.25.0"
   },
   "resolutions": {
-    "esbuild": "0.23.1"
+    "esbuild": "0.24.0"
   },
   "dependencies": {
     "@types/less": "^3.0.6",
@@ -96,5 +96,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.5.0"
 }
