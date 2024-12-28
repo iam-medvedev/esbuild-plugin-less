@@ -66,7 +66,7 @@
     "esbuild": ">=0.14.0 <0.25.0"
   },
   "resolutions": {
-    "esbuild": "0.24.0"
+    "esbuild": "0.24.2"
   },
   "dependencies": {
     "@types/less": "^3.0.7",
