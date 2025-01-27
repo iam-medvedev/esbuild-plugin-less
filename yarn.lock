@@ -1368,9 +1368,9 @@ __metadata:
   linkType: hard
 
 "@types/less@npm:^3.0.7":
-  version: 3.0.7
-  resolution: "@types/less@npm:3.0.7"
-  checksum: 10/67211d4ba55ab4e799e95cb9670227872ac1c6dd3ce14e188f5181731b8b6f005df8002bc7b8971a4418f9ba16b18db289abdab66fe10555638ab14df3b20c8d
+  version: 3.0.8
+  resolution: "@types/less@npm:3.0.8"
+  checksum: 10/7b4dd5d1fec813883c0f5e659a06cc0634da163925f3c9246cefcfb98f99682fd7135e2eb8dbba66ddfd582a8776a44ed78e06ebbfd89682771c8f12ebfe1146
   languageName: node
   linkType: hard
 
