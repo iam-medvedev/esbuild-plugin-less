@@ -7,6 +7,8 @@ import { convertLessError, getLessImports } from './less-utils';
 export interface LoaderOptions {
   /* Custom filter */
   filter?: RegExp;
+  /* Support importing less as string in typescript */
+  inline?: boolean;
 }
 
 /**
@@ -40,7 +42,9 @@ export function lessLoader(lessOptions: Less.Options = {}, loaderOptions: Loader
         const dir = path.dirname(args.path);
         const basename = path.basename(args.path);
         const isModule = basename.endsWith('.module.less');
-        const loader: Loader = isModule ? 'local-css' : 'css';
+        const loader: Loader = loaderOptions.inline === true
+          ? 'text'
+          : (isModule ? 'local-css' : 'css');
 
         const opts: Less.Options & { relativeUrls: boolean } = {
           filename: args.path,
