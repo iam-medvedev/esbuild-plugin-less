@@ -2801,11 +2801,11 @@ __metadata:
     vite: "npm:6.1.0"
     vitest: "npm:3.0.5"
   peerDependencies:
-    esbuild: ">=0.14.0 <0.25.0"
+    esbuild: ">=0.14.0 <0.25.1"
   languageName: unknown
   linkType: soft
 
-"esbuild@npm:0.25.0":
+"esbuild@npm:>=0.14.0 <0.25.1":
   version: 0.25.0
   resolution: "esbuild@npm:0.25.0"
   dependencies:
