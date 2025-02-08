@@ -35,6 +35,7 @@ jobs:
         run: |
           mkdir -p _site
           generate-md --layout github --input ./README.md --output ./_site
+          mv ./_site/README.html ./_site/index.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
