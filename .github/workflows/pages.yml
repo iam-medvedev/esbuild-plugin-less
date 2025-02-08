@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn add --cached
-          yarn global add -g markdown-styles
+          npm install -g markdown-styles
 
       - name: Convert README to HTML
         run: |
