@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>&#x60;esbuild-plugin-less&#x60;</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/github-markdown.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+  <body>
+    <article class="markdown-body"><h1 id="esbuild-plugin-less"><a class="header-link" href="#esbuild-plugin-less"></a><code>esbuild-plugin-less</code></h1>
+<p><a href="http://www.wtfpl.net/about/"><img src="https://img.shields.io/badge/License-WTFPL-brightgreen.svg" alt="License: WTFPL"></a>
+<a href="http://www.typescriptlang.org/"><img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg" alt="TypeScript"></a>
+<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-f8bc45.svg" alt="code style: prettier"></a>
+<a href="https://www.npmjs.com/package/esbuild-plugin-less"><img src="https://badge.fury.io/js/esbuild-plugin-less.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/esbuild-plugin-less"><img src="https://img.shields.io/npm/dt/esbuild-plugin-less.svg" alt="npm downloads"></a>
+<a href="https://libraries.io/github/iam-medvedev/esbuild-plugin-less"><img src="https://img.shields.io/librariesio/release/npm/esbuild-plugin-less" alt="libraries.io"></a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=shield" alt="FOSSA Status"></a>
+<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a></p>
+<p><a href="https://github.com/evanw/esbuild">esbuild</a> plugin for <a href="https://lesscss.org/">LESS</a> files.</p>
+<p>Supports all LESS features, including <a href="https://lesscss.org/#importing">imports</a>, <a href="https://lesscss.org/#variables">variables</a>, <a href="https://lesscss.org/#mixins">mixins</a>, and more.</p>
+<h2 id="features"><a class="header-link" href="#features"></a>Features</h2>
+<ul class="list">
+<li>💫 Support for all LESS.js features and options</li>
+<li>🎨 CSS Modules support with <code>.module.less</code> files</li>
+<li>🔄 Watch mode support with automatic rebuilds</li>
+<li>🎯 Custom file filtering options</li>
+<li>📝 Written in TypeScript</li>
+</ul>
+<h2 id="installation"><a class="header-link" href="#installation"></a>Installation</h2>
+<pre class="hljs"><code><span class="hljs-comment"># Using bun</span>
+$ bun add -D esbuild-plugin-less
+
+<span class="hljs-comment"># Using yarn</span>
+$ yarn add -D esbuild-plugin-less
+
+<span class="hljs-comment"># Using pnpm</span>
+$ pnpm add -D esbuild-plugin-less
+
+<span class="hljs-comment"># Using npm</span>
+$ npm install --save-dev esbuild-plugin-less</code></pre><h2 id="basic-usage"><a class="header-link" href="#basic-usage"></a>Basic Usage</h2>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { build } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;esbuild&#x27;</span>;
+<span class="hljs-keyword">import</span> { lessLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;esbuild-plugin-less&#x27;</span>;
+
+build({
+  <span class="hljs-attr">entryPoints</span>: [<span class="hljs-string">&#x27;src/index.ts&#x27;</span>],
+  <span class="hljs-attr">bundle</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">outdir</span>: <span class="hljs-string">&#x27;dist&#x27;</span>,
+  <span class="hljs-attr">plugins</span>: [lessLoader()], <span class="hljs-comment">// That&#x27;s it!</span>
+  <span class="hljs-attr">loader</span>: {
+    <span class="hljs-string">&#x27;.ts&#x27;</span>: <span class="hljs-string">&#x27;ts&#x27;</span>,
+  },
+});</code></pre><h2 id="advanced-configuration"><a class="header-link" href="#advanced-configuration"></a>Advanced Configuration</h2>
+<h3 id="with-less-options"><a class="header-link" href="#with-less-options"></a>With LESS Options</h3>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { build } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;esbuild&#x27;</span>;
+<span class="hljs-keyword">import</span> { lessLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;esbuild-plugin-less&#x27;</span>;
+
+build({
+  <span class="hljs-attr">entryPoints</span>: [<span class="hljs-string">&#x27;src/index.ts&#x27;</span>],
+  <span class="hljs-attr">bundle</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">outdir</span>: <span class="hljs-string">&#x27;dist&#x27;</span>,
+  <span class="hljs-attr">plugins</span>: [
+    lessLoader({
+      <span class="hljs-comment">// LESS.js options</span>
+      <span class="hljs-attr">math</span>: <span class="hljs-string">&#x27;always&#x27;</span>,
+      <span class="hljs-attr">globalVars</span>: {
+        <span class="hljs-attr">primaryColor</span>: <span class="hljs-string">&#x27;#ff0000&#x27;</span>,
+      },
+      <span class="hljs-attr">paths</span>: [<span class="hljs-string">&#x27;./src/styles&#x27;</span>],
+      <span class="hljs-attr">javascriptEnabled</span>: <span class="hljs-literal">true</span>,
+    }),
+  ],
+});</code></pre><h3 id="with-loader-options"><a class="header-link" href="#with-loader-options"></a>With Loader Options</h3>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { build } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;esbuild&#x27;</span>;
+<span class="hljs-keyword">import</span> { lessLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;esbuild-plugin-less&#x27;</span>;
+
+build({
+  <span class="hljs-attr">entryPoints</span>: [<span class="hljs-string">&#x27;src/index.ts&#x27;</span>],
+  <span class="hljs-attr">bundle</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">outdir</span>: <span class="hljs-string">&#x27;dist&#x27;</span>,
+  <span class="hljs-attr">plugins</span>: [
+    lessLoader(
+      {}, <span class="hljs-comment">// LESS options (empty in this example)</span>
+      {
+        <span class="hljs-comment">// Loader options</span>
+        <span class="hljs-attr">filter</span>: <span class="hljs-regexp">/\._?less$/</span>, <span class="hljs-comment">// Custom file filter</span>
+        inline: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Control if LESS files should be inlined as strings</span>
+      },
+    ),
+  ],
+});</code></pre><h2 id="css-modules-support"><a class="header-link" href="#css-modules-support"></a>CSS Modules Support</h2>
+<p>The plugin automatically handles <code>.module.less</code> files as CSS Modules. This enables local scoping of styles and generates unique class names.</p>
+<pre class="hljs"><code><span class="hljs-comment">// styles.module.less</span>
+<span class="hljs-selector-class">.button</span> {
+  <span class="hljs-attribute">color</span>: blue;
+}</code></pre><pre class="hljs"><code><span class="hljs-comment">// Component.ts</span>
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./styles.module.less&#x27;</span>;
+element.className = styles.button; <span class="hljs-comment">// Will use the generated unique class name</span></code></pre><h2 id="configuration-options"><a class="header-link" href="#configuration-options"></a>Configuration Options</h2>
+<h3 id="less-options"><a class="header-link" href="#less-options"></a>LESS Options</h3>
+<p>The plugin accepts all valid options from LESS.js. Here are some commonly used options:</p>
+<p>For a complete list of LESS options, see the <a href="http://lesscss.org/usage/#less-options">LESS documentation</a>.</p>
+<h3 id="loader-options"><a class="header-link" href="#loader-options"></a>Loader Options</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>filter</code></td>
+<td><code>RegExp</code></td>
+<td><code>/\.less$/</code></td>
+<td>Custom filter for processing files</td>
+</tr>
+<tr>
+<td><code>inline</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Import LESS files as strings in TypeScript</td>
+</tr>
+</tbody></table>
+<h2 id="license"><a class="header-link" href="#license"></a>License</h2>
+<p><code>esbuild-plugin-less</code> is <a href="./LICENSE">WTFPL licensed</a>.</p>
+<p><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less?ref=badge_large"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fiam-medvedev%2Fesbuild-plugin-less.svg?type=large" alt="FOSSA Status"></a></p>
+    </article>
+  </body>
+</html>
