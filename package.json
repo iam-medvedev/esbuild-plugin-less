@@ -51,7 +51,7 @@
     "@types/node": "22.13.10",
     "@vitest/coverage-v8": "3.0.8",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "0.25.1",
+    "esbuild": "0.25.2",
     "git-cz": "4.9.0",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
@@ -96,5 +96,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.8.1"
 }

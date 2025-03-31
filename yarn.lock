@@ -2789,7 +2789,7 @@ __metadata:
     "@types/node": "npm:22.13.10"
     "@vitest/coverage-v8": "npm:3.0.8"
     cz-conventional-changelog: "npm:3.3.0"
-    esbuild: "npm:0.25.1"
+    esbuild: "npm:0.25.2"
     git-cz: "npm:4.9.0"
     husky: "npm:9.1.7"
     less: "npm:^4.2.2"
