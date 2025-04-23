@@ -63,10 +63,10 @@
     "vitest": "3.0.8"
   },
   "peerDependencies": {
-    "esbuild": ">=0.14.0 <0.25.3"
+    "esbuild": ">=0.14.0 <0.25.4"
   },
   "resolutions": {
-    "esbuild": ">=0.14.0 <0.25.3"
+    "esbuild": ">=0.14.0 <0.25.4"
   },
   "dependencies": {
     "@types/less": "^3.0.8",
