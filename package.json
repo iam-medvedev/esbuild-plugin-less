@@ -45,22 +45,22 @@
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "13.0.1",
-    "@semantic-release/github": "11.0.1",
+    "@semantic-release/github": "11.0.3",
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.3",
-    "@types/node": "22.14.1",
-    "@vitest/coverage-v8": "3.1.2",
+    "@types/node": "22.15.23",
+    "@vitest/coverage-v8": "3.1.4",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "0.25.3",
+    "esbuild": "0.25.5",
     "git-cz": "4.9.0",
     "husky": "9.1.7",
-    "lint-staged": "15.5.1",
+    "lint-staged": "16.1.0",
     "prettier": "3.5.3",
-    "semantic-release": "24.2.3",
-    "tsx": "4.19.3",
+    "semantic-release": "24.2.5",
+    "tsx": "4.19.4",
     "typescript": "5.8.3",
-    "vite": "6.3.2",
-    "vitest": "3.1.2"
+    "vite": "6.3.5",
+    "vitest": "3.1.4"
   },
   "peerDependencies": {
     "esbuild": ">=0.14.0 <0.25.5"
@@ -78,7 +78,7 @@
     "less"
   ],
   "volta": {
-    "node": "22.14.0",
+    "node": "22.16.0",
     "yarn": "1.22.22"
   },
   "husky": {
