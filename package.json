@@ -51,7 +51,7 @@
     "@types/node": "24.10.1",
     "@vitest/coverage-v8": "4.0.9",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.27.0",
+    "esbuild": "^0.27.1",
     "git-cz": "4.9.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.6",
@@ -63,10 +63,10 @@
     "vitest": "4.0.9"
   },
   "peerDependencies": {
-    "esbuild": ">=0.14.0 <=0.27.0"
+    "esbuild": ">=0.14.0 <=0.27.1"
   },
   "resolutions": {
-    "esbuild": ">=0.14.0 <=0.27.0"
+    "esbuild": ">=0.14.0 <=0.27.1"
   },
   "dependencies": {
     "@types/less": "^3.0.8",
