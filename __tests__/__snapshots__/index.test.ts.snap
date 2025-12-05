@@ -34,3 +34,38 @@ exports[`less-loader > works with module.less 1`] = `
 ".o{display:block}.o{color:#000}.button{color:gray}.foo .l{color:red}.foo .l{color:green}
 "
 `;
+
+exports[`less-loader builds successful 1`] = `
+"#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}.index-style{transition:.2s all cubic-bezier(.075,.82,.165,1)}body{background:#5d1db2}body article{width:100px}body article:first-child{width:200px}
+"
+`;
+
+exports[`less-loader builds successful custom filter 1`] = `
+"#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#5d1db2}body article{width:100px}body article:first-child{width:200px}
+"
+`;
+
+exports[`less-loader builds successful with less as entrypoint 1`] = `
+"#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}.index-style{transition:.2s all cubic-bezier(.075,.82,.165,1)}body{background:#5d1db2}body article{width:100px}body article:first-child{width:200px}
+"
+`;
+
+exports[`less-loader builds imported .less files 1`] = `
+"#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}.index-style{transition:.2s all cubic-bezier(.075,.82,.165,1)}body{background:#5d1db2}body article{width:100px}body article:first-child{width:200px}
+"
+`;
+
+exports[`less-loader builds imported ._less_ files 1`] = `
+"#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}body{background:#5d1db2}body article{width:100px}body article:first-child{width:200px}
+"
+`;
+
+exports[`less-loader builds imported .css files 1`] = `
+"#style-5-css{position:-webkit-sticky;position:sticky;background:url(data:image/png;base64,iVBORw0KGgoAAAAASURBVA==) no-repeat}#style-4-css{display:none}.style-3-less{color:red}.style-2-less{color:red;background:url(data:image/jpeg;base64,/9j/) no-repeat}.index-style{transition:.2s all cubic-bezier(.075,.82,.165,1)}body{background:#5d1db2}body article{width:100px}body article:first-child{width:200px}
+"
+`;
+
+exports[`less-loader works with module.less 1`] = `
+".o{display:block}.o{color:#000}.button{color:gray}.foo .l{color:red}.foo .l{color:green}
+"
+`;
